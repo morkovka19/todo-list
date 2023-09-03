@@ -1,0 +1,58 @@
+.todo-block-buttons {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo {
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-info-block {
+  margin: 5px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-name {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  transition: linear .3s transform;
+}
+
+.todo-name:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.todo-description {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.todo-description-date{
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+.todo-description-time{
+    margin: 0;
+    padding: 0;
+    font-size: 8px;
+}
+
+.todo_ok{
+  background-color: rgb(201, 234, 175);
+  opacity: .6;
+  color: grey
+}

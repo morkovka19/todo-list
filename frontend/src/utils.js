@@ -1,0 +1,81 @@
+let todos = [
+  {
+    id: 1,
+    name: 1,
+    description: 1,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 2,
+    name: 2,
+    description: 2,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 3,
+    name: 3,
+    description: 3,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 4,
+    name: 4,
+    description: 4,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 5,
+    name: 5,
+    description: 5,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 6,
+    name: 6,
+    description: 6,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 11,
+    name: 11,
+    description: 11,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 7,
+    name: 7,
+    description: 7,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 8,
+    name: 8,
+    description: 8,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 9,
+    name: 9,
+    description: 9,
+    status: true,
+    date: "2022-01-01",
+  },
+  {
+    id: 10,
+    name: 10,
+    description: 10,
+    status: true,
+    date: "2022-01-01",
+  },
+];
+
+export default todos;
