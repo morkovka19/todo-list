@@ -72,10 +72,14 @@ function App() {
       const {data} = await axios.patch(`${BASE_URL}todos/${id}/`, {
         status: status
       });
+      
       if(status){
-        setTodos([data, ...todos.filter((item) => item.id !== data.id)])
+        console.log(data)
+        const newTodos = [data, ...todos.filter(item => item.id !== data.id)]
+        setTodos(newTodos)
       } else{
-        setTodos([...todos.filter((item) => item.id !== data.id), data])
+        const newTodos = [...todos.filter(item => item.id !== data.id), data]
+        setTodos(newTodos);
       }
     }
     fetchTodoOk()
@@ -131,13 +135,13 @@ function App() {
       <Popup
         isOpen={isOpenAdd}
         onClose={handleClosePopups}
-        title="Добавить дело"
+        title="Добавить задачу"
         children={<FormAdd onSubmit={handleAddTodoSubmit} />}
       />
       <Popup
         isOpen={isOpenCard}
         onClose={handleClosePopups}
-        title="Редактировать дело"
+        title="Редактировать задачу"
         children={<FormCard info={infoPopup} handleOnSubmit={handleInstallTodo}/>}
       />
     </div>
