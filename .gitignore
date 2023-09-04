@@ -1,11 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/frontend/node_modules
+/node_modules
 /.pnp
 .pnp.js
-/venv
 
+/frontend/node_modules
+/venv
+/backend_api/db.sqlite3
+/backend_api/djangorestframework
+/backend_api/install
+/backend_api/pip
 # testing
 /coverage
 
