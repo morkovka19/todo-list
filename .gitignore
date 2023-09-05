@@ -10,7 +10,9 @@
 /backend_api/db.sqlite3
 /backend_api/djangorestframework
 /backend_api/install
-/backend_api/pip
+/backend_api/
+/package.json
+/package-lock.json
 # testing
 /coverage
 
