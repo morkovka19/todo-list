@@ -19,7 +19,8 @@
 /frontend/package-lock.json
 
 
-# production
+.requirements
+# productionфе
 /build
 
 # misc

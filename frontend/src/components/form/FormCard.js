@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function FormCard({handleOnSubmit, info}) {
+  console.log(info)
   const [name, setName] = useState(info.name);
   const [description, setDescription] = useState(info.description);
   
@@ -30,9 +31,10 @@ export default function FormCard({handleOnSubmit, info}) {
           placeholder="Название"
           name="name"
           id="name"
-          value={name}
           onChange={handleChangeName}
+          defaultValue={info.name}
           required
+          
         />
         <input
           className="form__input"
@@ -40,7 +42,7 @@ export default function FormCard({handleOnSubmit, info}) {
           placeholder="Описание"
           name="description"
           id="description"
-          value={description}
+          defaultValue={info.description}
           onChange={handleChangeDescription}
           required
         />

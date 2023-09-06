@@ -1,0 +1,6 @@
+class DA: 
+    MAX_LENTH_NAME = 50
+    MAX_LENGTH_DESCRIPTION = 200
+    DELETED_DEFAULT = 5
+
+

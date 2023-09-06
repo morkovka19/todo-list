@@ -12,7 +12,7 @@ const BASE_URL = "http://127.0.0.1:8000/"
 function App() {
   const [isOpenAdd, setIsOpenAdd] = useState(false);
   const [isOpenCard, setIsOpenCard] = useState(false);
-  const [infoPopup, setInfoPopup] = useState({name: '', description: ''});
+  const [infoPopup, setInfoPopup] = useState({name: '', description: '', id: 0});
   const [todos, setTodos] = useState([])
 
   
@@ -20,7 +20,7 @@ function App() {
     const fetchTodos = async ()=>{
       const {data} = await axios.get(`${BASE_URL}todos/`);
 
-      data.sort((first, second) => first.status < second.status ? 1 : -1)
+      data.sort((first, second) => first.status < second.status  || first.status === 1 && second.status === 2 ? 1 : -1)
       setTodos(data)
     }
     fetchTodos()
@@ -38,6 +38,8 @@ function App() {
       const {data} = await axios.post(`${BASE_URL}todos/`, {
         name: name,
         description: description,
+        deleted: 0 ,
+        status: 1
       });
       setTodos([data, ...todos])
     }
@@ -56,10 +58,13 @@ function App() {
     
   };
 
-  const handleDelete = ({id}) =>{
+  const handleDelete = ({id, name, description}) =>{
     const fetchTodoDelete = async ()=>{
-      const {data} = await axios.delete(`${BASE_URL}todos/${id}`, {
-        id: id
+      const {data} = await axios.put(`${BASE_URL}todos/${id}/`, {
+        id: id,
+        deleted: 1,
+        name: name,
+        description: description
       });
       const newTodo  = todos.filter(todo => todo.id !== id);
       setTodos(newTodo)
@@ -67,36 +72,41 @@ function App() {
     fetchTodoDelete()
   }
 
-  const handleOkTodo = ({id, status}) =>{
+  const handleOkTodo = ({id, status, name, description}) =>{
+    console.log(status)
     const fetchTodoOk = async ()=>{
-      const {data} = await axios.patch(`${BASE_URL}todos/${id}/`, {
-        status: status
+      const {data} = await axios.put(`${BASE_URL}todos/${id}/`, {
+        status: status,
+        name: name,
+        description: description,
+        deleted: 0,
       });
       
-      if(status){
-        console.log(data)
+      if(status === 1){
         const newTodos = [data, ...todos.filter(item => item.id !== data.id)]
         setTodos(newTodos)
-      } else{
+      } else if (status === 0){
         const newTodos = [...todos.filter(item => item.id !== data.id), data]
         setTodos(newTodos);
       }
+      
     }
-    fetchTodoOk()
+    fetchTodoOk();
   }
 
   const handleInstallTodo = ({name, description, id}) =>{
     setIsOpenCard(false);
     const fetchTodoInstall = async ()=>{
-      const {data} = await axios.patch(`${BASE_URL}todos/${id}/`, {
+      const {data} = await axios.put(`${BASE_URL}todos/${id}/`, {
         name: name,
-        description: description
+        description: description,
+        deleted: 0,
       });
       setInfoPopup({name: '', description: ''})
       const newTodos = todos.filter(todo => todo.id !== id)
-      if (data.status){
+      if (data.status === 1 || (data.status === 2 )){
         setTodos([data, ...newTodos])
-      } else{
+      } else if (data.status === 0){
         setTodos([...newTodos, data])
       }
     }
@@ -109,7 +119,7 @@ function App() {
       <h1 className="title">Todo List</h1>
       <div className="setting-block">
         <div className="search-block">
-          <input type="text" placeholder="Найти дело" className="input" />
+          <input type="text" placeholder="Найти задачу" className="input" />
           <button type="button" className="button">
             <img src={SerachIcon} alt="найти" className="icon" />
           </button>

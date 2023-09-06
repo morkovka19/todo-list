@@ -12,20 +12,11 @@ def home(request):
     return render(request, "home.html")
 
 
-@api_view(['GET', 'POST'])
-def todos_list(request):
-
-    if request.method == 'GET':
-        todos = Todo.objects.all()
-        serializer = TodoSerializer(todos, many=True)
-        return Response(serializer.data)
-    if request.method == 'POST':
-        name = request.data.get('name')
-        description = request.data.get('description')
-        todo = Todo.objects.create(name=name, description=description)
-        serializer = TodoSerializer(todo, many=False)
-        return response(serializer.data)
 
 class TodoViewSet(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class =  TodoSerializer
+
+
+        
+
