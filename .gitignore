@@ -18,8 +18,8 @@
 /frontend/package.json
 /frontend/package-lock.json
 
-
-.requirements
+requirements
+frontend-requirement.txt
 # productionфе
 /build
 
