@@ -104,3 +104,7 @@
 .input:focus {
   outline: none;
 }
+
+.todos-container_unvisible{
+  display: none;
+}

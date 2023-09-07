@@ -13,7 +13,9 @@ function App() {
   const [isOpenAdd, setIsOpenAdd] = useState(false);
   const [isOpenCard, setIsOpenCard] = useState(false);
   const [infoPopup, setInfoPopup] = useState({name: '', description: '', id: 0});
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([]);
+  const [nameSearch, setNameSearch] = useState('');
+  const [todoFind, setTodoFind] = useState();
 
   
   useEffect(() =>{
@@ -113,20 +115,56 @@ function App() {
     fetchTodoInstall()
   }
 
+  const handleSearch =(e)=>{
+    e.preventDefault();
+    const fetchSearch = async ()=>{
+      const {data} = await axios.post(`${BASE_URL}search/`, {
+        name: nameSearch
+      });
+      if (data !== []){
+        setTodoFind(data);
+      } else{
+        setTodoFind(false);
+      }
+  }
+  fetchSearch();
+  setNameSearch('')
+}
+
+  const handleOnChangeSearch =(e)=>{
+      e.preventDefault();
+      setNameSearch(e.target.value);
+  }
+
   
   return (
     <div className="page__container">
       <h1 className="title">Todo List</h1>
       <div className="setting-block">
-        <div className="search-block">
-          <input type="text" placeholder="Найти задачу" className="input" />
-          <button type="button" className="button">
+        <form className="search-block" onSubmit={handleSearch}>
+          <input type="text" placeholder="Найти задачу" className="input" value={nameSearch} onChange={handleOnChangeSearch} required/>
+          <button type="submit" className="button">
             <img src={SerachIcon} alt="найти" className="icon" />
           </button>
-        </div>
+        </form>
         <button className="button" type="button" onClick={handleAddTodo}>
           <img src={AddIcon} alt="добавить" className="icon" />
         </button>
+      </div>
+      <div className={`todos-container ${!todoFind  && 'todos-container_unvisible'}`}>
+        <ul className="todos-list">
+          {todoFind?.map((todo) => (
+            <li key={todo.id} className="todo-item">
+              <Todo
+                infoTodo={todo}
+                handleNameClick={handleOpenTodo}
+                onDelete={handleDelete}
+                onOk = {handleOkTodo}
+              />
+            </li>
+          ))}
+          {todoFind?.length === 0 && "Not Found"}
+        </ul>
       </div>
       <div className="todos-container">
         <ul className="todos-list">
@@ -157,5 +195,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

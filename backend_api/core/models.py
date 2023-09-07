@@ -1,6 +1,9 @@
+from typing import Any
 from django.db import models
+from django.db.models.query import QuerySet
 from core.mixins import *
 from core.constants import DA
+
 
 
 # class StatusTodo(DateMixin):
@@ -41,3 +44,7 @@ class Todo(DateMixin, IsDeletedMixin):
     class Meta:
         verbose_name = 'Todo'
         verbose_name_plural = "Todos"
+
+
+
+

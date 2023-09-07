@@ -8,4 +8,5 @@ router.register(r'todos', TodoViewSet)
 
 urlpatterns =[
     path('', include(router.urls)),
+    path('search/', views.post_search, name="search"),
 ]
