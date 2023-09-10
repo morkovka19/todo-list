@@ -117,16 +117,12 @@ function App() {
 
   const handleSearch =(e)=>{
     e.preventDefault();
-    const fetchSearch = async ()=>{
-      const {data} = await axios.post(`${BASE_URL}search/`, {
-        name: nameSearch
-      });
-      if (data !== []){
-        setTodoFind(data);
-      } else{
-        setTodoFind(false);
-      }
+    const fetchSearch = async() =>{
+    const {data} = await axios.get(`${BASE_URL}todos/?name=${nameSearch}`)
+    console.log(data)
+    setTodoFind(data)
   }
+  
   fetchSearch();
   setNameSearch('')
 }
