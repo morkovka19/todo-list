@@ -13,7 +13,7 @@ export default function Todo({ handleNameClick, onDelete, infoTodo, onOk }) {
 
 
   const clickOnName = () => {
-    handleNameClick({ name, description, id: infoTodo.id });
+    handleNameClick({ name, description, id: infoTodo.id, status });
   };
 
   const handleDelete = () => {

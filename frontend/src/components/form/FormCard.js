@@ -19,7 +19,7 @@ export default function FormCard({handleOnSubmit, info}) {
     e.preventDefault();
     setName('');
     setDescription('')
-    handleOnSubmit({name, description, id: info.id})
+    handleOnSubmit({name, description, id: info.id, status: info.status})
   }
 
   return (

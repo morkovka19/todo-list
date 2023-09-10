@@ -96,13 +96,14 @@ function App() {
     fetchTodoOk();
   }
 
-  const handleInstallTodo = ({name, description, id}) =>{
+  const handleInstallTodo = ({name, description, id, status}) =>{
     setIsOpenCard(false);
     const fetchTodoInstall = async ()=>{
       const {data} = await axios.put(`${BASE_URL}todos/${id}/`, {
         name: name,
         description: description,
         deleted: 0,
+        status: status
       });
       setInfoPopup({name: '', description: ''})
       const newTodos = todos.filter(todo => todo.id !== id)
